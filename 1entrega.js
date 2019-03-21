@@ -1,6 +1,8 @@
 //importacion del script de cursos
 const {curso1, curso2, curso3, curso4} = require ('./cursos');
 const fs = require('fs');
+const express = require('express')
+const app = express()
 
 //insertar elementos para la inscripcion
 let insertar=()=>{
@@ -44,7 +46,7 @@ let insertar=()=>{
             xxx=argv.id;
             xxy=argv.nombre;
             xxz=argv.cedula;
-            console.log('se creo el arhivo');
+            console.log('Registro exitoso');
             console.log("id del curso   "+xxx);
             console.log("nombre   "+xxy);
             console.log("cedula  "+xxz);
@@ -68,31 +70,29 @@ insertar();
 //crear archivo
 let archivo=(ii,nn,xxx)=>{
 
-    setTimeout(function(){
         //verifica a que curso se inscribio
         if(ii==3540579)
         {
-            texto="el estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii;
+            texto=("El/La estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii);
         }
         if(ii==54138)
         {
-            texto="el estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii;
+            texto=("El/La estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii);
         }
         if(ii==984168)
         {
-            texto="el estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii;        }
+            texto=("El/La estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii);        }
         if(ii==874138)
         {
-            texto="el estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii;
+            texto=("El/La estudiante se llama "+ nn + " con cedula " + xxx + " se matricula en el curso de codigo " + ii);
         }
     
     //crear el archivo con los datos ingresados para la iscripcion del curso a un tiempo de 9 segundos
-    fs.writeFile('curso.txt',texto,(err)=>{
-     if(err)throw(err);
-     console.log(+ '\n');
-     console.log('se ha creado el archivo')
-    });
+    app.get('/', function (req, res) {
+    res.send(texto)
+    })
 
-    },9000);
+    app.listen(3000)
+
 
 }    
